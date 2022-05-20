@@ -2,24 +2,66 @@
 <br />
 <div class="row" style="margin-top: 20px">
   <div class="col-xs-12">
-    <form (ngSubmit)="onSubmit()">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
       <div class="row">
         <div class="col-xs-6">
-          <div class="form-group" style="text-align: center">
+          <div class="form-group" style="text-align: right">
             <label>Choose Crypto currency</label>
-            <select id="cryptoCurrency">
+            <select
+              class="form-control"
+              id="cryptoCurrency"
+              required
+              ngModel
+              name="cryptoCurrency"
+            >
               <option value="btc">Bitcoin</option>
               <option value="eth">Ethereum</option>
             </select>
+            <br />
+            <div class="date" style="padding: 20px"></div>
+            <label for="fromDate">From</label>
+            <input
+              class="form-control"
+              type="date"
+              name="fromDate"
+              id="fromDate"
+              required
+              ngModel
+            />
           </div>
         </div>
         <div class="col-xs-6">
           <label>Convert to : </label>
-          <select id="toCurrency">
+          <select
+            class="form-control"
+            id="toCurrency"
+            required
+            ngModel
+            name="toCurrency"
+          >
             <option value="eur">Euro</option>
             <option value="usd">USD</option>
           </select>
+          <br />
+          <div class="date" style="padding: 20px"></div>
+          <label for="toDate">To</label>
+          <input
+            class="form-control"
+            type="date"
+            name="toDate"
+            id="toDate"
+            required
+            ngModel
+          />
         </div>
+      </div>
+      <div class="col-xs-12" style="text-align: center; padding: 50px">
+        <button
+          class="btn btn-primary"
+          [disabled]="!myForm.form.touched || !myForm.form.valid"
+        >
+          Submit
+        </button>
       </div>
     </form>
   </div>
