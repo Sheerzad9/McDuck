@@ -1,0 +1,69 @@
+<div
+  class="additionalInfo"
+  *ngIf="!chartIsEmpty"
+  style="background-color: chocolate"
+>
+  <div
+    class="longestDownwardList"
+    style="background: rgba(255, 255, 255, 0.7); text-align: center"
+  >
+    <h4>
+      Max days Bitcoin was decreasing in row, <br />
+      Between days {{ dates }}
+    </h4>
+    <div
+      class="noDownwardDates"
+      *ngIf="additionalInformation.isEmpty; else isNotEmpty"
+    >
+      <h4>No decreasing days in row :-(</h4>
+    </div>
+    <ng-template #isNotEmpty>
+      <h4>
+        <b>
+          {{ additionalInformation.downwardDays }} Days, from
+          {{ chartData.labels[additionalInformation.from] }} -
+          {{ chartData.labels[additionalInformation.to] }}
+        </b>
+      </h4>
+    </ng-template>
+    <br />
+    <h4>
+      <b>
+        {{ chartData.labels[additionalInformation.highestValue] }}
+        <br />
+        had the higest trading volume =
+        {{ chartData.pricePerDay[additionalInformation.highestValue] }}€
+      </b>
+    </h4>
+  </div>
+  <div
+    class="bestDaysToBuyAndSell"
+    *ngIf="
+      additionalInformation.bestDayToBuy !== additionalInformation.bestDayToSell
+    "
+    style="
+      background: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding-bottom: 15px;
+    "
+  >
+    <h4>
+      Best day to buy: <br />
+      <b>
+        {{ chartData.labels[additionalInformation.bestDayToBuy] }} -
+        {{ chartData.pricePerDay[additionalInformation.bestDayToBuy] }}€
+      </b>
+    </h4>
+    <br />
+    <h4>
+      Best day to sell: <br />
+      <b>
+        {{ chartData.labels[additionalInformation.bestDayToSell] }} -
+        {{ chartData.pricePerDay[additionalInformation.bestDayToSell] }}€
+      </b>
+    </h4>
+    <h4>
+      <b>Profit: {{ additionalInformation.profit }}€</b>
+    </h4>
+  </div>
+</div>

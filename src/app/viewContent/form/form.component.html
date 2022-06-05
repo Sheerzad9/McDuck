@@ -1,0 +1,91 @@
+<div class="row" style="margin-top: 20px">
+  <div class="col-xs-12">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+      <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-5">
+          <div class="form-group" style="text-align: right">
+            <label>Choose Crypto currency</label>
+            <select
+              class="form-control"
+              id="cryptoCurrency"
+              required
+              ngModel
+              name="cryptoCurrency"
+            >
+              <option value="bitcoin">Bitcoin</option>
+              <option value="ethereum">Ethereum</option>
+            </select>
+            <br />
+            <div class="date" style="padding: 20px"></div>
+            <label for="fromDate">From</label>
+            <input
+              [(ngModel)]="dateMin"
+              class="form-control"
+              type="date"
+              name="fromDate"
+              id="fromDate"
+              [max]="dateMax"
+              required
+              ngModel
+            />
+          </div>
+        </div>
+        <div class="col-xs-5">
+          <label>Convert to : </label>
+          <select
+            class="form-control"
+            id="toCurrency"
+            required
+            ngModel
+            name="toCurrency"
+          >
+            <option value="eur">Euro</option>
+            <option value="usd">USD</option>
+          </select>
+          <br />
+          <div class="date" style="padding: 20px"></div>
+          <label for="toDate">To</label>
+          <input
+            class="form-control"
+            type="date"
+            name="toDate"
+            id="toDate"
+            [min]="dateMin"
+            [max]="dateMax"
+            required
+            ngModel
+          />
+        </div>
+      </div>
+      <div class="col-xs-12" style="text-align: center; padding: 50px">
+        <button
+          class="btn btn-primary"
+          [disabled]="!myForm.form.touched || !myForm.form.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-xs-12">
+    <div class="col-xs-9">
+      <canvas
+        *ngIf="chartDataIsNotEmpty"
+        width="200px"
+        height="200px"
+        baseChart
+        [datasets]="data"
+        [options]="options"
+        [labels]="labels"
+        [type]="'bar'"
+      ></canvas>
+    </div>
+    <div class="col-xs-3">
+      <app-additional-information-list></app-additional-information-list>
+    </div>
+  </div>
+</div>

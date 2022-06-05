@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mcduck-cryptoapp-72817": {
+      "hosting": {
+        "mcDuck": [
+          "mcduck-cryptoapp-72817"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mcduck-cryptoapp-72817"
+  }
+}
