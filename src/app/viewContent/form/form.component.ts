@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ChartDataset, ChartOptions } from 'chart.js';
 import { HttpService } from './http.service';
 import { Subscription } from 'rxjs';
@@ -19,8 +19,6 @@ interface MyFormData {
 })
 export class FormComponent implements OnInit {
   mySub: Subscription;
-  //chartData: fromHttpService.ChartModel | null;
-  myForm: FormGroup;
   todaysDate = new Date();
   dateMax: string = `${this.todaysDate.getFullYear()}-${
     this.todaysDate.getMonth() + 1 < 10
@@ -83,19 +81,5 @@ export class FormComponent implements OnInit {
     this.httpServices.fetchDataAndGetDates(url);
 
     formData.resetForm();
-    //this.fetchDataAndAssign(url);
-    //this.chartData = await this.httpServices.fetchDataAndGetDates(url);
-    // if (this.chartData) {
-    //   this.data = [
-    //     {
-    //       data: this.chartData.pricePerDay,
-    //       label: 'Bitcoin in Euro',
-    //     },
-    //   ];
-    //   this.labels = this.chartData.labels;
-    //   this.chartDataIsNotEmpty = true;
-    // }
-    // console.log(this.chartData);
-    // formData.resetForm();
   }
 }

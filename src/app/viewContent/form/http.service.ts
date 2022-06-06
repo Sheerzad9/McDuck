@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export interface APIResponseLoad {
   prices: number[][];
@@ -29,9 +28,6 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   async fetchDataAndGetDates(url: string) {
-    // Getting response data with get request
-    // this.responseData = await this.http.get<APIResponseLoad>(url).toPromise();
-
     await this.http.get<APIResponseLoad>(url).subscribe(
       (response) => {
         console.log(response);
@@ -42,13 +38,6 @@ export class HttpService {
         alert('Error in API request');
       }
     );
-
-    // if (this.responseData !== undefined) {
-    //   // Getting one price value per date (date = nearest 00:00 time of the date)
-    //   this.chartData = this.getSpecificDates(this.responseData.prices);
-    //   if (this.chartData !== null) this.chartDataChanged.next(this.chartData);
-    // }
-    // console.log(this.chartData);
     return this.chartData;
   }
 
