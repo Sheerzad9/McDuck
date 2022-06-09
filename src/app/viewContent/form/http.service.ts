@@ -27,18 +27,18 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  async fetchDataAndGetDates(url: string) {
-    await this.http.get<APIResponseLoad>(url).subscribe(
+  fetchDataAndGetDates(url: string) {
+    this.http.get<APIResponseLoad>(url).subscribe(
       (response) => {
         console.log(response);
         this.chartData = this.getSpecificDates(response.prices);
         if (this.chartData) this.chartDataChanged.next(this.chartData);
       },
-      (reject) => {
-        alert('Error in API request');
+      (error) => {
+        alert(error);
       }
     );
-    return this.chartData;
+    //return this.chartData;
   }
 
   private getSpecificDates(dates: number[][]): ChartModel | null {

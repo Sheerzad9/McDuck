@@ -1,6 +1,5 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpService } from '../http.service';
-import { ChartModel } from '../http.service';
 
 export interface LongestDownwardDays {
   highestValue: number;
@@ -120,6 +119,6 @@ export class AdditionalInformationService {
       new Date(unixTimeStamps[from]).getTime();
     const totalDays = Math.ceil(difference / (1000 * 3600 * 24));
     console.log(totalDays);
-    return totalDays - 1;
+    return totalDays === 1 ? totalDays : totalDays - 1;
   }
 }
